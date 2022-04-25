@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css"
 
 class Slider extends React.Component{
     constructor(props){
@@ -31,15 +32,17 @@ class Slider extends React.Component{
     }
    
     nextPicture = () =>{ 
-        if(this.state.currentImg >=3 ){
+        if(this.state.currentImg >= this.ImgBuffer.length - 1 ){
             this.setState({...this.state, currentImg:0})
+            return;
         }
         this.setState({...this.state, currentImg:this.state.currentImg + 1})
     }
     
     prevPicture = () =>{ 
         if(this.state.currentImg <= 0){
-            this.setState({...this.state, currentImg:3})
+            this.setState({...this.state, currentImg: 3})
+            return;
         }
         this.setState({...this.state, currentImg:this.state.currentImg - 1})
     }
