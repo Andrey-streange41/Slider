@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header'
 import Counter from './components/Counter';
 import Slider from './components/Slider';
+import MiniGame from './components/MiniGame';
 
 
 
@@ -24,8 +25,7 @@ class App extends React.Component{
     <div>
         <Header textContent={this.state.logo} user={this.state.name} imgSrc={this.state.imgSrc}/>
       <main>
-        <Counter/>
-        <Slider/>
+          <MiniGame/>
       </main>
     </div>
   )

@@ -13,27 +13,35 @@ class Slider extends React.Component{
         
         this.state=
         {
-            currentImg:0
+            currentImg: 0,
+            timerId: null
         }
     }
     start = () =>{
-        this.timerId = setInterval(this.nextPicture,2000);
+        if(this.state.timerId === null){
+            this.setState({...this.state, timerId :setInterval(this.nextPicture,2000) });
+        }
     }
 
     componentDidMount(){
-        this.timerId = setInterval(this.nextPicture,2000);
+        if(this.state.timerId === null){
+            this.setState({...this.state, timerId :setInterval(this.nextPicture,2000) });
+        }
     }
     componentWillUnmount(){
-        clearInterval(this.timerId);
+        clearInterval(this.state.timerId);
+        this.setState({...this.state, timerId :null });
     }
 
     pause = () =>{
-        clearInterval(this.timerId);
+        clearInterval(this.state.timerId);
+        this.setState({...this.state, timerId :null });
     }
    
     nextPicture = () =>{ 
         if(this.state.currentImg >= this.ImgBuffer.length - 1 ){
             this.setState({...this.state, currentImg:0})
+            
             return;
         }
         this.setState({...this.state, currentImg:this.state.currentImg + 1})
